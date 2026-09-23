@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  /* ===== Цвета Karina ===== */
+  /* Акцентный цвет (синий как в iOS) */
+  --color-accent: #007aff;
+  --color-accent-hover: #0066d6;
+
+  /* Типы событий */
+  --color-todo: #007aff;       /* To Do — синий */
+  --color-event: #34c759;      /* Event — зелёный */
+  --color-reminder: #ff9500;   /* Reminder — оранжевый */
+  --color-vacation: #5856d6;   /* Отпуск — фиолетовый */
+  --color-sick: #ff3b30;       /* Больничный — красный */
+  --color-shift: #af52de;      /* Подмена — пурпурный */
+
+  /* Нейтральные (iOS-стиль) */
+  --color-ios-bg-light: #f2f2f7;      /* фон светлая тема */
+  --color-ios-card-light: #ffffff;    /* карточки светлая */
+  --color-ios-separator-light: #e5e5ea;
+  
+  --color-ios-bg-dark: #000000;
+  --color-ios-card-dark: #1c1c1e;     /* карточки тёмная */
+  --color-ios-separator-dark: #2c2c2e;
+
+  /* Рабочий день — цвет рамки/сетки */
+  --color-workday: #007aff;
+
+  /* ===== Шрифты ===== */
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ===== Глобальные стили ===== */
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+body {
+  font-family: var(--font-sans);
+  overscroll-behavior-y: none;
+}
+
+
+
+/* Убираем системный скроллбар, оставляем скролл */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Плавные переходы при смене темы */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+body {
+  color: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #fff;
+  }
+}
