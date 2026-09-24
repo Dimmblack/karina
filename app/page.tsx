@@ -3,20 +3,30 @@
 import { useState } from "react";
 import AppShell, { TabKey } from "./components/AppShell";
 import MiniCalendar from "./components/MiniCalendar";
+import DayView from "./components/DayView";
 import SettingsScreen from "./components/SettingsScreen";
+import EventFormSheet from "./components/EventFormSheet";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabKey>("calendar");
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
-  const handleFabClick = () => {
-    alert("Скоро здесь будет форма добавления события");
-  };
+  const openForm = () => setIsFormOpen(true);
+  const closeForm = () => setIsFormOpen(false);
 
   return (
     <AppShell
       activeTab={activeTab}
       onTabChange={setActiveTab}
-      onFabClick={handleFabClick}
+      onFabClick={openForm}
+      overlay={
+        <EventFormSheet
+          isOpen={isFormOpen}
+          initialDate={selectedDate}
+          onClose={closeForm}
+        />
+      }
     >
       <main className="px-4 pt-4 pb-6">
         <header className="mb-6">
@@ -26,7 +36,15 @@ export default function Home() {
           </p>
         </header>
 
-        {activeTab === "calendar" && <MiniCalendar />}
+        {activeTab === "calendar" && (
+          <>
+            <MiniCalendar
+              selectedDate={selectedDate}
+              onSelectDate={setSelectedDate}
+            />
+            <DayView date={selectedDate} onAddEvent={openForm} />
+          </>
+        )}
 
         {activeTab === "events" && (
           <div className="flex items-center justify-center py-20">
