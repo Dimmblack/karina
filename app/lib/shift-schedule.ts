@@ -1,6 +1,6 @@
 /**
  * Логика графика 2/2.
- * 
+ *
  * От даты старта идёт цикл: 2 рабочих дня → 2 выходных → 2 рабочих → 2 выходных...
  * Цикл — 4 дня.
  */
@@ -53,7 +53,7 @@ export function formatISODate(date: Date): string {
 }
 
 /**
- * Хук для получения конфига графика.
+ * Получение конфига графика.
  * Пока — из localStorage. Позже заменим на Supabase.
  */
 export function getScheduleConfig(): ScheduleConfig | null {
@@ -70,13 +70,4 @@ export function getScheduleConfig(): ScheduleConfig | null {
 export function saveScheduleConfig(config: ScheduleConfig) {
   if (typeof window === "undefined") return;
   localStorage.setItem("karina-schedule", JSON.stringify(config));
-}
-// ВРЕМЕННО — для теста, потом удалим
-if (typeof window !== "undefined") {
-  if (!localStorage.getItem("karina-schedule")) {
-    localStorage.setItem(
-      "karina-schedule",
-      JSON.stringify({ startDate: "2026-09-01" })
-    );
-  }
 }

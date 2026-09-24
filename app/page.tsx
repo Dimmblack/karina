@@ -3,6 +3,7 @@
 import { useState } from "react";
 import AppShell, { TabKey } from "./components/AppShell";
 import MiniCalendar from "./components/MiniCalendar";
+import SettingsScreen from "./components/SettingsScreen";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabKey>("calendar");
@@ -38,16 +39,7 @@ export default function Home() {
           </div>
         )}
 
-        {activeTab === "settings" && (
-          <div className="flex items-center justify-center py-20">
-            <div className="text-center">
-              <div className="text-6xl mb-4">⚙️</div>
-              <p className="text-neutral-500 dark:text-neutral-400">
-                Здесь будут настройки графика и темы
-              </p>
-            </div>
-          </div>
-        )}
+        {activeTab === "settings" && <SettingsScreen />}
       </main>
     </AppShell>
   );
