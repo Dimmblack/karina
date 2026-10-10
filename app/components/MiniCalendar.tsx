@@ -241,8 +241,8 @@ export default function MiniCalendar({
                   >
                     {/* Верх: число с кружком */}
                     <div className="relative w-9 h-9 flex items-center justify-center mt-0.5 mb-1">
-                      {/* Рабочая смена */}
-                      {dayType === "work" && !isToday && (
+                      {/* Рабочая смена (день или ночь) */}
+                      {(dayType === "work" || dayType === "night") && !isToday && (
                         <div className="absolute inset-0 rounded-full bg-black/10 dark:bg-white/10" />
                       )}
 
